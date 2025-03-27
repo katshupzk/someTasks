@@ -36,8 +36,13 @@ A modern task manager with **drag n' drop**, smart filtering, and data export. B
   - BEM methodology for CSS  
 
 ---
+## Github Pages  
+```bash  
+git clone https://github.com/katshupzk/someTasks.git  
+```
 
 ## Installation  
 1. Clone the repository:  
 ```bash  
 git clone https://github.com/katshupzk/someTasks.git  
+```
