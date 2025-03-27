@@ -2,16 +2,18 @@ class TaskManager {
     constructor() {
         this.tasks = TaskStorage.getTasks();
         this.currentFilter = 0;
+        this.taskToDelete = null;
         this.initEventListeners();
         this.renderTasks();
         this.initDeleteZone();
+        this.initDeleteModal();
     }
 
     initEventListeners() {
         document.getElementById('newTaskBtn').addEventListener('click', () => this.toggleModal());
         document.querySelector('.close').addEventListener('click', () => this.toggleModal());
         document.querySelector('.close-edit').addEventListener('click', () => this.toggleEditModal());
-        
+        document.getElementById('exportBtn').addEventListener('click', () => this.exportToCSV());
         document.getElementById('taskForm').addEventListener('submit', (e) => this.handleFormSubmit(e));
         document.getElementById('editForm').addEventListener('submit', (e) => this.handleEditSubmit(e));
 
@@ -39,9 +41,37 @@ class TaskManager {
         
         deleteZone.addEventListener('drop', (e) => {
             e.preventDefault();
-            const taskId = e.dataTransfer.getData('text/plain');
-            this.deleteTask(taskId);
+            this.taskToDelete = e.dataTransfer.getData('text/plain');
+            document.getElementById('deleteModal').style.display = 'block';
             deleteZone.classList.remove('active');
+        });
+    }
+
+    initDeleteModal() {
+        const deleteModal = document.getElementById('deleteModal');
+        const confirmBtn = document.getElementById('confirmDeleteBtn');
+        const cancelBtn = document.getElementById('cancelDeleteBtn');
+
+        document.querySelector('.close-delete-modal').addEventListener('click', () => {
+            deleteModal.style.display = 'none';
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            deleteModal.style.display = 'none';
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            if (this.taskToDelete) {
+                this.deleteTask(this.taskToDelete);
+                this.taskToDelete = null;
+            }
+            deleteModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === deleteModal) {
+                deleteModal.style.display = 'none';
+            }
         });
     }
 
@@ -184,6 +214,47 @@ class TaskManager {
         this.tasks = this.tasks.filter(task => task.id !== taskId);
         TaskStorage.saveTasks(this.tasks);
         this.renderTasks();
+        this.taskToDelete = null;
+    }
+
+    exportToCSV() {
+        const tasks = this.tasks;
+        if (tasks.length === 0) {
+            alert('Nenhuma tarefa para exportar.');
+            return;
+        }
+    
+        const csvContent = this.generateCSVContent(tasks);
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'tasks_export.csv');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
+    
+    generateCSVContent(tasks) {
+        const headers = ['ID', 'Nome', 'Descrição', 'Status', 'Data Limite', 'Importância'];
+        const rows = tasks.map(task => {
+            const statusMap = {
+                'pending': 'Pendente',
+                'in-progress': 'Em Progresso',
+                'completed': 'Completo'
+            };
+            const stars = '☆'.repeat(task.stars);
+            return [
+                `"${task.id}"`,
+                `"${task.name.replace(/"/g, '""')}"`,
+                `"${task.description.replace(/"/g, '""')}"`,
+                `"${statusMap[task.status]}"`,
+                `"${task.dueDate}"`,
+                `"${stars}"`
+            ].join(',');
+        });
+        return [headers.join(','), ...rows].join('\n');
     }
 }
 
