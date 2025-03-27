@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>someTasks</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>someTasks</h1>
+        
+        <button id="newTaskBtn" class="btn">+ Nova Tarefa</button>
+        
+        <div class="board">
+            <div class="column" data-status="pending">
+                <h2>⏳ Pendente</h2>
+                <div class="tasks" id="pendingTasks"></div>
+            </div>
+            
+            <div class="column" data-status="in-progress">
+                <h2>🚧 Em Progresso</h2>
+                <div class="tasks" id="inProgressTasks"></div>
+            </div>
+            
+            <div class="column" data-status="completed">
+                <h2>✅ Completo</h2>
+                <div class="tasks" id="completedTasks"></div>
+            </div>
+        </div>
+
+        <div id="deleteZone" class="delete-zone">
+            🗑️ Arraste aqui para deletar
+        </div>
+    </div>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Nova Tarefa</h2>
+            <form id="taskForm">
+                <input type="text" id="taskName" placeholder="Nome da Tarefa" required>
+                <textarea id="taskDesc" placeholder="Descrição"></textarea>
+                
+                <div class="status-select">
+                    <label for="taskStatus">Status:</label>
+                    <select id="taskStatus">
+                        <option value="pending">Pendente</option>
+                        <option value="in-progress">Em Progresso</option>
+                        <option value="completed">Completo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskDueDate">Data Limite:</label>
+                    <input type="date" id="taskDueDate" required>
+                </div>
+
+                <button type="submit" class="btn">Criar Tarefa</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-edit">&times;</span>
+            <h2>Editar Tarefa</h2>
+            <form id="editForm">
+                <input type="text" id="editTaskName" required>
+                <textarea id="editTaskDesc"></textarea>
+                
+                <div class="status-select">
+                    <label for="editTaskStatus">Status:</label>
+                    <select id="editTaskStatus">
+                        <option value="pending">Pendente</option>
+                        <option value="in-progress">Em Progresso</option>
+                        <option value="completed">Completo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="editTaskDueDate">Data Limite:</label>
+                    <input type="date" id="editTaskDueDate" required>
+                </div>
+
+                <button type="submit" class="btn">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./src/storage.js"></script>
+    <script src="./src/app.js"></script>
+</body>
+</html>
