@@ -6,10 +6,19 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
+
     <div class="container">
         <h1>someTasks</h1>
-        
-        <button id="newTaskBtn" class="btn">+ Nova Tarefa</button>
+            
+        <div class="header-controls">
+            <button id="newTaskBtn" class="btn">+ Nova Tarefa</button>
+            <div class="filter-controls">
+                <button class="filter-btn active" data-stars="0">Todos</button>
+                <button class="filter-btn" data-stars="1">☆</button>
+                <button class="filter-btn" data-stars="2">☆☆</button>
+                <button class="filter-btn" data-stars="3">☆☆☆</button>
+            </div>
+        </div>
         
         <div class="board">
             <div class="column" data-status="pending">
@@ -55,6 +64,15 @@
                     <input type="date" id="taskDueDate" required>
                 </div>
 
+                <div class="form-group">
+                    <label for="taskStars">Importância:</label>
+                    <select id="taskStars">
+                        <option value="1">☆</option>
+                        <option value="2">☆☆</option>
+                        <option value="3">☆☆☆</option>
+                    </select>
+                </div>
+
                 <button type="submit" class="btn">Criar Tarefa</button>
             </form>
         </div>
@@ -76,12 +94,21 @@
                         <option value="completed">Completo</option>
                     </select>
                 </div>
-
+    
                 <div class="form-group">
                     <label for="editTaskDueDate">Data Limite:</label>
                     <input type="date" id="editTaskDueDate" required>
                 </div>
-
+    
+                <div class="form-group">
+                    <label for="editTaskStars">Importância:</label>
+                    <select id="editTaskStars">
+                        <option value="1">☆</option>
+                        <option value="2">☆☆</option>
+                        <option value="3">☆☆☆</option>
+                    </select>
+                </div>
+    
                 <button type="submit" class="btn">Salvar Alterações</button>
             </form>
         </div>

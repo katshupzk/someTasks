@@ -353,3 +353,59 @@ select {
     padding: 12px 15px;
     margin: 5px 0 0 0;
 }
+
+.task-card.overdue {
+    border-color: #ff4444;
+    background: #2d1a1a;
+    animation: pulseWarning 1.5s infinite;
+}
+
+@keyframes pulseWarning {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.task-card.overdue .task-due {
+    color: #ff4444 !important;
+    font-weight: bold;
+}
+
+.stars-container {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    display: flex;
+    gap: 2px;
+    color: var(--accent);
+    font-size: 1.2em;
+}
+
+.filter-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(46, 204, 113, 0.1);
+}
+
+
+.header-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 25px;
+}
