@@ -1,36 +1,43 @@
-# 📋 someTasks - Gerenciador de Tarefas
+# 📋 someTasks - Task Manager  
 
-![Preview](./src/image/image.png)
+![Preview](./src/image/image.png)  
+*This is an academic project developed to practice core web technologies.*  
 
-Um gerenciador de tarefas moderno com arrastar/soltar, filtros inteligentes e exportação de dados. Desenvolvido com tecnologias web modernas.
+A modern task manager with **drag n' drop**, smart filtering, and data export. Built with Vanilla JavaScript.  
 
-## Funcionalidades
+## Features  
 
-- **CRUD de Tarefas**
-  - Criação com nome, descrição, status, data limite e prioridade
-  - Edição dinâmica via modal
-  - Exclusão com confirmação
-- **Sistema de Arrastar/Soltar**
-  - Movimento entre colunas (Pendente/Em Progresso/Completo)
-  - Zona de exclusão com feedback visual
-- **Filtragem Inteligente**
-  - Filtro por nível de prioridade (☆ a ☆☆☆)
-  - Visualização de tarefas atrasadas
-- **Exportação de Dados**
-  - Geração de arquivo CSV completo
-- **Interface Moderna**
-  - Design responsivo e acessível
-  - Transições suaves e feedbacks visuais
-  - Modais contextualizados
+- **CRUD Operations for Tasks**  
+  - Create tasks with **name**, description, status, due date, and priority  
+  - Edit tasks dynamically via a modal  
+  - Delete tasks with confirmation  
+- **Drag and Drop System**  
+  - Move tasks between columns (*Pending/In Progress/Completed*)  
+  - Visual feedback for drop zones and a dedicated trash area  
+- **Smart Filtering**  
+  - Filter by priority level (☆ to ☆☆☆)  
+  - Highlight overdue tasks  
+- **Data Export**  
+  - Generate comprehensive CSV files  
+- **Modern UI**  
+  - Responsive and accessible design  
+  - Smooth transitions and visual feedback  
 
-## Tecnologias
+## Technologies  
 
-- **Frontend**
-  - HTML5 Semântico
-  - CSS3 Moderno (Grid, Flexbox, Variáveis CSS)
-  - JavaScript Vanilla (ES6+)
-- **Armazenamento**
-  - LocalStorage para persistência de dados
-- **Ferramentas**
-  - (Drag & Drop, File System Access API)
-  - Metodologia BEM para CSS
+- **Frontend**  
+  - Semantic HTML5  
+  - Modern CSS3 (Grid, Flexbox, CSS Variables)  
+  - Vanilla JavaScript  
+- **Storage**  
+  - LocalStorage for data persistence  
+- **Tools & APIs**  
+  - Drag & Drop API, File System Access API  
+  - BEM methodology for CSS  
+
+---
+
+## Installation  
+1. Clone the repository:  
+```bash  
+git clone https://github.com/katshupzk/someTasks.git  
