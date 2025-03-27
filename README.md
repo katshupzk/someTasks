@@ -38,7 +38,7 @@ A modern task manager with **drag n' drop**, smart filtering, and data export. B
 ---
 ## Github Pages  
 ```bash  
-git clone https://github.com/katshupzk/someTasks.git  
+https://katshupzk.github.io/someTasks/
 ```
 
 ## Installation  
